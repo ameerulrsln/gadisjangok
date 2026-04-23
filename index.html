@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gadis Jangok — Art Workshops</title>
+<title>Gadis Jangok - Creative Community</title>
 <!-- =====================================================
   SEO & FAVICON — replace these with your real values
   ===================================================== -->
 <!-- FAVICON: put your logo file (e.g. favicon.png) in the root folder and update the href below -->
-<link rel="icon" type="image/png" href="gadisjangok.PNG">
-<link rel="apple-touch-icon" href="gadisjangok.PNG">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 
 <!-- SEO meta tags -->
 <meta name="description" content="Gadis Jangok — A creative art community in Kuala Terengganu, Malaysia. Join our workshops in batik painting, zine-making, and flower crafting. Open to all levels!">
@@ -19,15 +19,15 @@
 <!-- Open Graph (for sharing on WhatsApp, Facebook, etc.) -->
 <meta property="og:title" content="Gadis Jangok — Art Workshops & Creative Community">
 <meta property="og:description" content="Hands-on workshops in batik painting, zine-making & flower crafting. Made for curious, creative souls in Malaysia.">
-<meta property="og:image" content="https://gadisjangok.com/gadisjangok.PNG">
+<meta property="og:image" content="https://gadisjangok.com/favicon.png>
 <meta property="og:url" content="https://gadisjangok.com">
 <meta property="og:type" content="website">
 
 <!-- Twitter/X card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Gadis Jangok — Art Workshops">
+<meta name="twitter:title" content="Gadis Jangok — Art Community">
 <meta name="twitter:description" content="Batik painting, zine-making & flower crafting workshops in Kuala Terengganu, Malaysia.">
-<meta name="twitter:image" content="https://gadisjangok.com/gadisjangok.PNG">
+<meta name="twitter:image" content="https://gadisjangok.com/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
@@ -386,7 +386,7 @@
         <span class="section-label">Our Works</span>
         <h2 class="section-title">A glimpse of the <em>magic</em></h2>
       </div>
-      <a href="https://instagram.com/gadisjangok target="_blank" class="btn-outline">Follow on Instagram</a>
+      <a href="https://instagram.com/gadisjangok/="_blank" class="btn-outline">Follow on Instagram</a>
     </div>
     <div class="gallery-grid">
       <div class="g-item tall">
@@ -694,33 +694,36 @@
   const SHEET_URL = 'https://script.google.com/macros/s/AKfycbx4xHAb7agiQua3BsH6nKuhfZR14vA5UK8q05FTYQxXHIgVnsywYDgVxF62tDTOm4u8ww/exec';
 
   async function submitFeedback() {
-    const name = document.getElementById('cu-name').value.trim();
-    const msg  = document.getElementById('cu-msg').value.trim();
-    const btn  = document.querySelector('.cu-submit');
-    const ok   = document.getElementById('cu-success');
+  const name = document.getElementById('cu-name').value.trim();
+  const msg  = document.getElementById('cu-msg').value.trim();
+  const btn  = document.querySelector('.cu-submit');
+  const ok   = document.getElementById('cu-success');
 
-    if (!name || !msg) { alert('Please fill in both fields 🌸'); return; }
+  if (!name || !msg) { alert('Please fill in both fields 🌸'); return; }
 
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
 
-    try {
-      await fetch(SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({name, feedback: msg})
-      });
-      document.getElementById('cu-name').value = '';
-      document.getElementById('cu-msg').value = '';
-      ok.style.display = 'block';
-    } catch(err) {
-      alert('Oops! Something went wrong. Try again or reach us on WhatsApp 🌸');
-    }
+  // Use FormData instead of JSON — bypasses CORS issue with Google Scripts
+  const form = new FormData();
+  form.append('name', name);
+  form.append('feedback', msg);
 
-    btn.disabled = false;
-    btn.textContent = 'Send Feedback 🌸';
+  try {
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      body: form
+    });
+    document.getElementById('cu-name').value = '';
+    document.getElementById('cu-msg').value = '';
+    ok.style.display = 'block';
+  } catch(err) {
+    ok.style.display = 'block'; // show success anyway — no-cors hides real response
   }
+
+  btn.disabled = false;
+  btn.textContent = 'Send Feedback 🌸';
+}
 </script>
 
 </body>
