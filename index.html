@@ -17,12 +17,12 @@
   body{font-family:var(--font-body);background:#FFF7D8;color:var(--text);overflow-x:hidden}
 
   /* NAV */
-  nav{position:fixed;top:0;width:100%;z-index:100;padding:0.55rem 2.4rem;display:flex;justify-content:space-between;align-items:center;background:rgba(255, 255, 255, 0.70);backdrop-filter:blur(12px);border-bottom:1px solid rgba(216,91,147,0.2);box-shadow:0 10px 26px rgba(216,91,147,0.12);transition:transform 0.35s ease,opacity 0.35s ease,padding 0.25s ease,background 0.25s ease}
+  nav{position:fixed;top:0;width:100%;z-index:100;padding:0.55rem 2.4rem;display:flex;justify-content:space-between;align-items:center;background:rgba(255, 255, 255, 0.70);backdrop-filter:blur(12px);border-bottom:1px solid rgba(216,91,147,0.2);box-shadow:0 10px 26px rgba(216,91,147,0.12);transition:opacity 0.3s ease,padding 0.25s ease,background 0.25s ease}
   .nav-logo{display:flex;align-items:center;width:clamp(85px,12vw,100px);transform-origin:left center;transition:width 0.28s ease,transform 0.28s ease}
   .nav-logo img{display:block;width:100%;height:auto;object-fit:contain}
   nav.scrolled{background:rgba(255, 255, 255, 0.70);padding:0.30rem 2.4rem}
   nav.scrolled .nav-logo{width:clamp(110px,13vw,180px)}
-  nav.nav-hidden{transform:translateY(-115%);opacity:0}
+  nav.nav-hidden{opacity:0;pointer-events:none}
   .nav-links{display:flex;gap:2.2rem;list-style:none}
   .nav-links a{font-size:0.82rem;color:#8C5E5E;text-decoration:none;letter-spacing:0.09em;text-transform:uppercase;transition:color 0.3s,transform 0.3s}
   .nav-links a:hover{color:var(--rose-dark);transform:translateY(-2px)}
@@ -74,7 +74,8 @@
   .workshop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.6rem}
   .w-card{border-radius:24px;overflow:hidden;background:var(--cream);transition:transform 0.35s,box-shadow 0.35s;box-shadow:0 2px 20px rgba(139,58,82,0.06)}
   .w-card:hover{transform:translateY(-8px);box-shadow:0 12px 40px rgba(139,58,82,0.14)}
-  .w-img{height:220px;display:flex;align-items:center;justify-content:center;font-size:5rem;position:relative}
+  .w-img{height:220px;display:flex;align-items:center;justify-content:center;font-size:5rem;position:relative;overflow:hidden}
+  .w-img img{width:100%;height:100%;object-fit:cover;display:block}
   .w-batik{background:linear-gradient(135deg,#F9E4D4,#F5C4D0)}
   .w-zine{background:linear-gradient(135deg,#E8DCF0,#D4C4E8)}
   .w-flower{background:linear-gradient(135deg,#C8D8C0,#D8ECD4)}
@@ -118,25 +119,39 @@
   .g-overlay{position:absolute;inset:0;transition:background 0.3s;display:flex;align-items:flex-end;padding:1rem}
   .g-item:hover .g-overlay{background:rgba(139,58,82,0.1)}
 
-  /* CONTACT */
+  /* EVENTS */
   #contact{background:linear-gradient(135deg,#FCEEF4 0%,#EDE0F5 100%)}
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
-  .c-form{background:#fff;border-radius:24px;padding:2.5rem;box-shadow:0 4px 32px rgba(139,58,82,0.07)}
-  .c-form-title{font-family:var(--font-head);font-size:1.5rem;margin-bottom:1.6rem;color:var(--text)}
-  .fg{margin-bottom:1.15rem}
-  .fg label{display:block;font-size:0.75rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--text-light);margin-bottom:0.38rem}
-  .fg input,.fg select,.fg textarea{width:100%;padding:0.78rem 1rem;border:1.5px solid rgba(199,96,126,0.25);border-radius:12px;font-family:var(--font-body);font-size:0.9rem;color:var(--text);background:var(--cream);outline:none;transition:border-color 0.3s}
-  .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--rose-dark)}
-  .fg textarea{height:95px;resize:none}
-  .c-submit{width:100%;background:var(--rose-dark);color:#fff;border:none;padding:1rem;border-radius:50px;font-size:0.9rem;font-family:var(--font-body);cursor:pointer;letter-spacing:0.05em;transition:background 0.3s;margin-top:0.5rem}
-  .c-submit:hover{background:var(--rose-deep)}
-  .c-info h3{font-family:var(--font-head);font-size:1.6rem;margin-bottom:2rem;color:var(--text)}
-  .c-info h3 em{color:var(--rose-dark)}
-  .info-row{display:flex;gap:1rem;margin-bottom:1.8rem;align-items:flex-start}
-  .info-icon{width:44px;height:44px;border-radius:50%;background:var(--rose);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-  .info-lbl{font-size:0.73rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--text-light);margin-bottom:0.2rem}
-  .info-val{font-size:0.94rem;color:var(--text);line-height:1.5}
-  .social-row{display:flex;gap:0.8rem;margin-top:2.5rem;flex-wrap:wrap}
+  .events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem;margin-bottom:5rem}
+  .ev-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 2px 20px rgba(139,58,82,0.07);transition:transform 0.3s,box-shadow 0.3s}
+  .ev-card:hover{transform:translateY(-6px);box-shadow:0 10px 36px rgba(139,58,82,0.13)}
+  .ev-img{height:200px;overflow:hidden;position:relative}
+  .ev-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .ev-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:0.78rem;letter-spacing:0.09em;text-transform:uppercase;color:rgba(139,58,82,0.38);font-weight:500}
+  .ev-status{position:absolute;top:1rem;left:1rem;padding:0.28rem 0.8rem;border-radius:999px;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:600}
+  .ev-status.upcoming{background:#47D29D;color:#fff}
+  .ev-status.past{background:rgba(255,255,255,0.85);color:var(--text-light)}
+  .ev-body{padding:1.4rem}
+  .ev-date{font-size:0.76rem;color:var(--rose-dark);letter-spacing:0.07em;text-transform:uppercase;margin-bottom:0.4rem;font-weight:500}
+  .ev-title{font-family:var(--font-head);font-size:1.2rem;color:var(--text);margin-bottom:0.4rem}
+  .ev-loc{font-size:0.82rem;color:var(--text-light)}
+
+  /* COLLAB CAROUSEL */
+  #collab{background:#fff}
+  .carousel-wrap{position:relative;overflow:hidden;border-radius:20px}
+  .carousel-track{display:flex;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1)}
+  .carousel-slide{min-width:100%;position:relative}
+  .carousel-slide img{width:100%;height:420px;object-fit:cover;display:block}
+  .carousel-slide-placeholder{width:100%;height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;font-size:0.78rem;letter-spacing:0.09em;text-transform:uppercase;color:rgba(139,58,82,0.35);font-weight:500}
+  .slide-caption{position:absolute;bottom:0;left:0;right:0;padding:1.5rem 2rem;background:linear-gradient(to top,rgba(74,27,46,0.75),transparent);color:#fff}
+  .slide-caption-title{font-family:var(--font-head);font-size:1.2rem;margin-bottom:0.2rem}
+  .slide-caption-sub{font-size:0.8rem;opacity:0.75}
+  .carousel-dots{display:flex;justify-content:center;gap:0.5rem;margin-top:1.2rem}
+  .carousel-dot{width:8px;height:8px;border-radius:50%;background:var(--rose-dark);opacity:0.25;cursor:pointer;transition:opacity 0.3s,transform 0.3s;border:none;padding:0}
+  .carousel-dot.active{opacity:1;transform:scale(1.35)}
+  .carousel-arrows{display:flex;justify-content:center;gap:0.8rem;margin-top:1rem}
+  .carousel-arrow{background:#fff;border:1.5px solid var(--rose);color:var(--rose-dark);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s}
+  .carousel-arrow:hover{background:var(--rose-dark);color:#fff;border-color:var(--rose-dark)}
+  .social-row{display:flex;gap:0.8rem;margin-top:2rem;flex-wrap:wrap;justify-content:center}
   .soc-btn{background:var(--rose);color:var(--rose-dark);border-radius:50px;padding:0.5rem 1.3rem;font-size:0.8rem;text-decoration:none;transition:all 0.3s;font-weight:500}
   .soc-btn:hover{background:var(--rose-dark);color:#fff}
 
@@ -188,7 +203,7 @@
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Book Now</a>
+  <a href="#contact" class="nav-cta">Join Us</a>
 </nav>
 
 <!-- HOME PAGE -->
@@ -230,7 +245,8 @@
       <div class="w-card">
         <div class="w-img w-batik">
           <span class="w-tag">Most Loved ✨</span>
-          🎨
+          <!-- REPLACE: swap src with your batik workshop photo -->
+          <img src="images/batik-workshop.jpg" alt="Batik Painting Workshop" onerror="this.style.display='none'">
         </div>
         <div class="w-body">
           <h3 class="w-title">Batik Painting</h3>
@@ -241,14 +257,17 @@
             <span>🌟 All levels</span>
           </div>
           <div class="w-footer">
-            <div class="w-price">RM 120 / pax</div>
-            <button class="w-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book Slot</button>
+            <div class="w-price" style="font-size:0.85rem;color:var(--text-light);font-family:var(--font-body)">Community event · Free / low cost</div>
+            <button class="w-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Upcoming Event</button>
           </div>
         </div>
       </div>
 
       <div class="w-card">
-        <div class="w-img w-zine">📒</div>
+        <div class="w-img w-zine">
+          <!-- REPLACE: swap src with your zine workshop photo -->
+          <img src="images/zine-workshop.jpg" alt="Zine Workshop" onerror="this.style.display='none'">
+        </div>
         <div class="w-body">
           <h3 class="w-title">Zine Workshop</h3>
           <p class="w-desc">Cut, paste, draw and collage your way to a mini-magazine. Express yourself across 8 tiny pages — no art experience needed, just curiosity.</p>
@@ -258,14 +277,17 @@
             <span>🌟 All levels</span>
           </div>
           <div class="w-footer">
-            <div class="w-price">RM 80 / pax</div>
-            <button class="w-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book Slot</button>
+            <div class="w-price" style="font-size:0.85rem;color:var(--text-light);font-family:var(--font-body)">Community event · Free / low cost</div>
+            <button class="w-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Upcoming Event</button>
           </div>
         </div>
       </div>
 
       <div class="w-card">
-        <div class="w-img w-flower">💐</div>
+        <div class="w-img w-flower">
+          <!-- REPLACE: swap src with your flower making workshop photo -->
+          <img src="images/flower-workshop.jpg" alt="Flower Making Workshop" onerror="this.style.display='none'">
+        </div>
         <div class="w-body">
           <h3 class="w-title">Flower Making</h3>
           <p class="w-desc">Craft delicate fabric or paper blooms using traditional techniques. Make a beautiful bouquet you can keep forever as a timeless keepsake.</p>
@@ -275,8 +297,8 @@
             <span>🌟 All levels</span>
           </div>
           <div class="w-footer">
-            <div class="w-price">RM 100 / pax</div>
-            <button class="w-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book Slot</button>
+            <div class="w-price" style="font-size:0.85rem;color:var(--text-light);font-family:var(--font-body)">Community event · Free / low cost</div>
+            <button class="w-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Upcoming Event</button>
           </div>
         </div>
       </div>
@@ -352,84 +374,190 @@
   </div>
 </section>
 
-<!-- CONTACT / BOOK NOW PAGE -->
+<!-- UPCOMING EVENTS & PAST EVENTS -->
 <section id="contact">
   <div class="container">
-    <div style="text-align:center;margin-bottom:0.5rem">
-      <span class="section-label">Let's Create Together</span>
-      <h2 class="section-title">Book a <em>Workshop</em></h2>
-    </div>
-    <div class="contact-grid">
-      <div class="c-form">
-        <p class="c-form-title">Reserve your spot 🌸</p>
-        <div class="fg">
-          <label>Your Name</label>
-          <input type="text" placeholder="e.g. Aisyah Rahman">
-        </div>
-        <div class="fg">
-          <label>Email</label>
-          <input type="email" placeholder="hello@email.com">
-        </div>
-        <div class="fg">
-          <label>Phone / WhatsApp</label>
-          <input type="tel" placeholder="+60 12-XXX XXXX">
-        </div>
-        <div class="fg">
-          <label>Workshop</label>
-          <select>
-            <option value="">Select a workshop...</option>
-            <option>Batik Painting — RM 120 / pax</option>
-            <option>Zine Workshop — RM 80 / pax</option>
-            <option>Flower Making — RM 100 / pax</option>
-          </select>
-        </div>
-        <div class="fg">
-          <label>Number of Pax</label>
-          <input type="number" placeholder="e.g. 4" min="1" max="12">
-        </div>
-        <div class="fg">
-          <label>Message / Preferred Date</label>
-          <textarea placeholder="Any special requests, group info, or preferred dates..."></textarea>
-        </div>
-        <button class="c-submit">Send Booking Request 🌸</button>
-      </div>
 
-      <div class="c-info">
-        <h3>We'd love to <em>hear from you</em></h3>
-        <div class="info-row">
-          <div class="info-icon">📍</div>
-          <div>
-            <div class="info-lbl">Location</div>
-            <div class="info-val">Kuala Terengganu, Terengganu<br>Malaysia</div>
+    <!-- Upcoming Events -->
+    <div style="margin-bottom:3.5rem">
+      <span class="section-label">What's On</span>
+      <h2 class="section-title">Upcoming <em>Events</em></h2>
+      <div class="events-grid">
+
+        <!-- UPCOMING EVENT 1 — replace src with your photo -->
+        <div class="ev-card">
+          <div class="ev-img" style="background:linear-gradient(135deg,#F9E4D4,#F5C4D0)">
+            <img src="images/event-upcoming-1.jpg" alt="Upcoming Event 1" onerror="this.style.display='none'">
+            <span class="ev-status upcoming">Upcoming</span>
+          </div>
+          <div class="ev-body">
+            <div class="ev-date">📅 Date · Time</div>
+            <div class="ev-title">Batik Painting Session</div>
+            <div class="ev-loc">📍 Venue Name, Kuala Terengganu</div>
           </div>
         </div>
-        <div class="info-row">
-          <div class="info-icon">🌐</div>
-          <div>
-            <div class="info-lbl">Website</div>
-            <div class="info-val">gadisjangok.com</div>
+
+        <!-- UPCOMING EVENT 2 — replace src with your photo -->
+        <div class="ev-card">
+          <div class="ev-img" style="background:linear-gradient(135deg,#E8DCF0,#D4C4E8)">
+            <img src="images/event-upcoming-2.jpg" alt="Upcoming Event 2" onerror="this.style.display='none'">
+            <span class="ev-status upcoming">Upcoming</span>
+          </div>
+          <div class="ev-body">
+            <div class="ev-date">📅 Date · Time</div>
+            <div class="ev-title">Zine Making Workshop</div>
+            <div class="ev-loc">📍 Venue Name, Kuala Terengganu</div>
           </div>
         </div>
-        <div class="info-row">
-          <div class="info-icon">📧</div>
-          <div>
-            <div class="info-lbl">Email</div>
-            <div class="info-val">admin@gadisjangok.com</div>
+
+        <!-- UPCOMING EVENT 3 — replace src with your photo -->
+        <div class="ev-card">
+          <div class="ev-img" style="background:linear-gradient(135deg,#C8D8C0,#D8ECD4)">
+            <img src="images/event-upcoming-3.jpg" alt="Upcoming Event 3" onerror="this.style.display='none'">
+            <span class="ev-status upcoming">Upcoming</span>
+          </div>
+          <div class="ev-body">
+            <div class="ev-date">📅 Date · Time</div>
+            <div class="ev-title">Flower Making Day</div>
+            <div class="ev-loc">📍 Venue Name, Kuala Terengganu</div>
           </div>
         </div>
-        <div class="info-row">
-          <div class="info-icon">📱</div>
-          <div>
-            <div class="info-lbl">WhatsApp</div>
-            <div class="info-val">+60 12-0000404<br><span style="font-size:0.82rem;color:var(--text-light)">Mon – Sat · 10am – 7pm</span></div>
-          </div>
-        </div>
-        <div class="social-row">
-          <a href="https://www.instagram.com/gadisjangok/" target="_blank" class="soc-btn">Instagram</a>
-          <a href="https://www.tiktok.com/@gadisjangok" target="_blank" class="soc-btn">TikTok</a>
-          <a href="https://wa.me" target="_blank" class="soc-btn">WhatsApp</a>
-        </div>
+
       </div>
+    </div>
+
+    <!-- Past Events -->
+    <div>
+      <span class="section-label">Looking Back</span>
+      <h2 class="section-title">Past <em>Events</em></h2>
+      <div class="events-grid">
+
+        <!-- PAST EVENT 1 — replace src with your photo -->
+        <div class="ev-card">
+          <div class="ev-img" style="background:linear-gradient(135deg,#FFF4A8,#F5C4D0)">
+            <img src="images/event-past-1.jpg" alt="Past Event 1" onerror="this.style.display='none'">
+            <span class="ev-status past">Past</span>
+          </div>
+          <div class="ev-body">
+            <div class="ev-date">📅 Past Date</div>
+            <div class="ev-title">Event Name Here</div>
+            <div class="ev-loc">📍 Venue Name</div>
+          </div>
+        </div>
+
+        <!-- PAST EVENT 2 — replace src with your photo -->
+        <div class="ev-card">
+          <div class="ev-img" style="background:linear-gradient(135deg,#FFD3E3,#E8DCF0)">
+            <img src="images/event-past-2.jpg" alt="Past Event 2" onerror="this.style.display='none'">
+            <span class="ev-status past">Past</span>
+          </div>
+          <div class="ev-body">
+            <div class="ev-date">📅 Past Date</div>
+            <div class="ev-title">Event Name Here</div>
+            <div class="ev-loc">📍 Venue Name</div>
+          </div>
+        </div>
+
+        <!-- PAST EVENT 3 — replace src with your photo -->
+        <div class="ev-card">
+          <div class="ev-img" style="background:linear-gradient(135deg,#C8D8C0,#FFD3E3)">
+            <img src="images/event-past-3.jpg" alt="Past Event 3" onerror="this.style.display='none'">
+            <span class="ev-status past">Past</span>
+          </div>
+          <div class="ev-body">
+            <div class="ev-date">📅 Past Date</div>
+            <div class="ev-title">Event Name Here</div>
+            <div class="ev-loc">📍 Venue Name</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PAST COLLABORATORS CAROUSEL -->
+<section id="collab">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <span class="section-label">People We've Made With</span>
+      <h2 class="section-title">Past <em>Collaborators</em></h2>
+    </div>
+
+    <div class="carousel-wrap">
+      <div class="carousel-track" id="collab-track">
+
+        <!-- SLIDE 1 — replace src with your collab photo -->
+        <div class="carousel-slide">
+          <div class="carousel-slide-placeholder" style="background:linear-gradient(135deg,#F9E4D4,#F5C4D0)">
+            <img src="images/collab-1.jpg" alt="Collaborator 1" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none'">
+            <span style="position:relative">Your Photo Here</span>
+            <span style="position:relative;font-size:0.68rem;opacity:0.6">Replace: images/collab-1.jpg</span>
+          </div>
+          <div class="slide-caption">
+            <div class="slide-caption-title">Collaborator / Event Name</div>
+            <div class="slide-caption-sub">Location · Year</div>
+          </div>
+        </div>
+
+        <!-- SLIDE 2 — replace src with your collab photo -->
+        <div class="carousel-slide">
+          <div class="carousel-slide-placeholder" style="background:linear-gradient(135deg,#E8DCF0,#D4C4E8)">
+            <img src="images/collab-2.jpg" alt="Collaborator 2" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none'">
+            <span style="position:relative">Your Photo Here</span>
+            <span style="position:relative;font-size:0.68rem;opacity:0.6">Replace: images/collab-2.jpg</span>
+          </div>
+          <div class="slide-caption">
+            <div class="slide-caption-title">Collaborator / Event Name</div>
+            <div class="slide-caption-sub">Location · Year</div>
+          </div>
+        </div>
+
+        <!-- SLIDE 3 — replace src with your collab photo -->
+        <div class="carousel-slide">
+          <div class="carousel-slide-placeholder" style="background:linear-gradient(135deg,#C8D8C0,#D8ECD4)">
+            <img src="images/collab-3.jpg" alt="Collaborator 3" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none'">
+            <span style="position:relative">Your Photo Here</span>
+            <span style="position:relative;font-size:0.68rem;opacity:0.6">Replace: images/collab-3.jpg</span>
+          </div>
+          <div class="slide-caption">
+            <div class="slide-caption-title">Collaborator / Event Name</div>
+            <div class="slide-caption-sub">Location · Year</div>
+          </div>
+        </div>
+
+        <!-- SLIDE 4 — replace src with your collab photo -->
+        <div class="carousel-slide">
+          <div class="carousel-slide-placeholder" style="background:linear-gradient(135deg,#FFF4A8,#FFD3E3)">
+            <img src="images/collab-4.jpg" alt="Collaborator 4" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none'">
+            <span style="position:relative">Your Photo Here</span>
+            <span style="position:relative;font-size:0.68rem;opacity:0.6">Replace: images/collab-4.jpg</span>
+          </div>
+          <div class="slide-caption">
+            <div class="slide-caption-title">Collaborator / Event Name</div>
+            <div class="slide-caption-sub">Location · Year</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="carousel-dots" id="collab-dots">
+      <button class="carousel-dot active" onclick="goToSlide(0)"></button>
+      <button class="carousel-dot" onclick="goToSlide(1)"></button>
+      <button class="carousel-dot" onclick="goToSlide(2)"></button>
+      <button class="carousel-dot" onclick="goToSlide(3)"></button>
+    </div>
+    <div class="carousel-arrows">
+      <button class="carousel-arrow" onclick="prevSlide()">&#8592;</button>
+      <button class="carousel-arrow" onclick="nextSlide()">&#8594;</button>
+    </div>
+
+    <div class="social-row" style="margin-top:3rem">
+      <a href="https://www.instagram.com/gadisjangok/" target="_blank" class="soc-btn">Instagram</a>
+      <a href="https://www.tiktok.com/@gadisjangok" target="_blank" class="soc-btn">TikTok</a>
+      <a href="https://wa.me/60120000404" target="_blank" class="soc-btn">WhatsApp</a>
     </div>
   </div>
 </section>
@@ -445,35 +573,43 @@
     <li><a href="#workshops">Workshops</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact">Events</a></li>
+    <li><a href="#collab">Collabs</a></li>
   </ul>
   <p class="f-copy">© 2026 Gadis Jangok · gadisjangok.com · All rights reserved</p>
 </footer>
 
 <script>
+  // NAV — hide on scroll down, show on scroll up
   const nav = document.querySelector('nav');
   let lastScrollY = window.scrollY;
-
   function updateNavOnScroll() {
-    const currentScrollY = window.scrollY;
-
-    if (currentScrollY > 30) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-
-    if (currentScrollY > 120 && currentScrollY > lastScrollY) {
-      nav.classList.add('nav-hidden');
-    } else {
-      nav.classList.remove('nav-hidden');
-    }
-
-    lastScrollY = currentScrollY;
+    const cur = window.scrollY;
+    if (cur > 30) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+    if (cur > 120 && cur > lastScrollY) nav.classList.add('nav-hidden'); else nav.classList.remove('nav-hidden');
+    lastScrollY = cur;
   }
-
   updateNavOnScroll();
-  window.addEventListener('scroll', updateNavOnScroll, { passive: true });
+  window.addEventListener('scroll', updateNavOnScroll, {passive:true});
+
+  // CAROUSEL
+  const track = document.getElementById('collab-track');
+  const dots = document.querySelectorAll('#collab-dots .carousel-dot');
+  const total = dots.length;
+  let current = 0;
+  let timer;
+
+  function goToSlide(n) {
+    current = (n + total) % total;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+  function nextSlide() { goToSlide(current + 1); resetTimer(); }
+  function prevSlide() { goToSlide(current - 1); resetTimer(); }
+  function resetTimer() { clearInterval(timer); timer = setInterval(nextSlide, 4000); }
+
+  // auto-start
+  timer = setInterval(nextSlide, 4000);
 </script>
 
 </body>
