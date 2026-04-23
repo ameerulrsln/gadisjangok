@@ -618,7 +618,7 @@
           <label>Your Feedback / Message</label>
           <textarea id="cu-msg" placeholder="Tell us anything — what you loved, what you'd like to see, or just drop a kind word 🌸" required></textarea>
         </div>
-        <button class="cu-submit" onclick="submitFeedback()">Send Feedback 🌸</button>
+        <button type="button" class="cu-submit" onclick="submitFeedback()"> Send Feedback 🌸</button>
         <div class="cu-success" id="cu-success">
           ✅ Thank you so much! We got your message and will read it with love 🌸
         </div>
@@ -691,20 +691,26 @@
   //      return ContentService.createTextOutput('OK');
   //    }
   // 3. Copy the Web App URL and paste it below replacing DUMMY_GOOGLE_SCRIPT_URL
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbx4xHAb7agiQua3BsH6nKuhfZR14vA5UK8q05FTYQxXHIgVnsywYDgVxF62tDTOm4u8ww/exec';
+ 
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbx4xHAb7agiQua3BsH6nKuhfZR14vA5UK8q05FTYQxXHIgVnsywYDgVxF62tDTOm4u8ww/exec';
 
-  async function submitFeedback() {
+async function submitFeedback(event) {
+  if (event) event.preventDefault();
+
   const name = document.getElementById('cu-name').value.trim();
-  const msg  = document.getElementById('cu-msg').value.trim();
-  const btn  = document.querySelector('.cu-submit');
-  const ok   = document.getElementById('cu-success');
+  const msg = document.getElementById('cu-msg').value.trim();
+  const btn = document.querySelector('.cu-submit');
+  const ok = document.getElementById('cu-success');
 
-  if (!name || !msg) { alert('Please fill in both fields 🌸'); return; }
+  if (!name || !msg) {
+    alert('Please fill in both fields 🌸');
+    return;
+  }
 
   btn.disabled = true;
   btn.textContent = 'Sending...';
+  ok.style.display = 'none';
 
-  // Use FormData instead of JSON — bypasses CORS issue with Google Scripts
   const form = new FormData();
   form.append('name', name);
   form.append('feedback', msg);
@@ -712,17 +718,20 @@
   try {
     await fetch(SHEET_URL, {
       method: 'POST',
+      mode: 'no-cors',
       body: form
     });
+
     document.getElementById('cu-name').value = '';
     document.getElementById('cu-msg').value = '';
     ok.style.display = 'block';
-  } catch(err) {
-    ok.style.display = 'block'; // show success anyway — no-cors hides real response
+  } catch (err) {
+    alert('Failed to send feedback. Please try again.');
+    console.error(err);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Send Feedback 🌸';
   }
-
-  btn.disabled = false;
-  btn.textContent = 'Send Feedback 🌸';
 }
 </script>
 
