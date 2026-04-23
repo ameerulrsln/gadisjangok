@@ -4,6 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gadis Jangok — Art Workshops</title>
+<!-- =====================================================
+  SEO & FAVICON — replace these with your real values
+  ===================================================== -->
+<!-- FAVICON: put your logo file (e.g. favicon.png) in the root folder and update the href below -->
+<link rel="icon" type="image/png" href="gadisjangok.PNG">
+<link rel="apple-touch-icon" href="gadisjangok.PNG">
+
+<!-- SEO meta tags -->
+<meta name="description" content="Gadis Jangok — A creative art community in Kuala Terengganu, Malaysia. Join our workshops in batik painting, zine-making, and flower crafting. Open to all levels!">
+<meta name="keywords" content="Gadis Jangok, art workshop Malaysia, batik painting, zine workshop, flower making, Kuala Terengganu, creative community">
+<meta name="author" content="Gadis Jangok">
+
+<!-- Open Graph (for sharing on WhatsApp, Facebook, etc.) -->
+<meta property="og:title" content="Gadis Jangok — Art Workshops & Creative Community">
+<meta property="og:description" content="Hands-on workshops in batik painting, zine-making & flower crafting. Made for curious, creative souls in Malaysia.">
+<meta property="og:image" content="https://gadisjangok.com/gadisjangok.PNG">
+<meta property="og:url" content="https://gadisjangok.com">
+<meta property="og:type" content="website">
+
+<!-- Twitter/X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gadis Jangok — Art Workshops">
+<meta name="twitter:description" content="Batik painting, zine-making & flower crafting workshops in Kuala Terengganu, Malaysia.">
+<meta name="twitter:image" content="https://gadisjangok.com/gadisjangok.PNG">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
@@ -155,6 +179,19 @@
   .soc-btn{background:var(--rose);color:var(--rose-dark);border-radius:50px;padding:0.5rem 1.3rem;font-size:0.8rem;text-decoration:none;transition:all 0.3s;font-weight:500}
   .soc-btn:hover{background:var(--rose-dark);color:#fff}
 
+  /* CONTACT US */
+  #contactus{background:linear-gradient(135deg,#FFF4A8 0%,#FFD3E3 100%)}
+  .cu-inner{max-width:600px;margin:0 auto;text-align:center}
+  .cu-form{background:#fff;border-radius:24px;padding:2.5rem;box-shadow:0 4px 32px rgba(139,58,82,0.08);text-align:left;margin-top:2.5rem}
+  .cu-field{margin-bottom:1.2rem}
+  .cu-field label{display:block;font-size:0.75rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--text-light);margin-bottom:0.4rem}
+  .cu-field input,.cu-field textarea{width:100%;padding:0.82rem 1rem;border:1.5px solid rgba(199,96,126,0.25);border-radius:12px;font-family:var(--font-body);font-size:0.92rem;color:var(--text);background:#FFF9F0;outline:none;transition:border-color 0.3s}
+  .cu-field input:focus,.cu-field textarea:focus{border-color:var(--rose-dark)}
+  .cu-field textarea{height:130px;resize:none}
+  .cu-submit{width:100%;background:var(--rose-dark);color:#fff;border:none;padding:1rem;border-radius:50px;font-size:0.9rem;font-family:var(--font-body);cursor:pointer;letter-spacing:0.05em;transition:background 0.3s,transform 0.2s;margin-top:0.3rem}
+  .cu-submit:hover{background:var(--rose-deep);transform:translateY(-2px)}
+  .cu-success{display:none;text-align:center;padding:1.5rem;background:rgba(71,210,157,0.12);border:1.5px solid #47D29D;border-radius:16px;color:#18A36E;font-size:0.95rem;margin-top:1rem}
+
   /* FOOTER */
   footer{background:#3A2A2A;color:rgba(253,246,240,0.65);padding:3rem;text-align:center}
   .footer-logo{display:flex;justify-content:center;align-items:center;width:100%;margin:0 auto 1.1rem}
@@ -201,9 +238,11 @@
     <li><a href="#workshops">Workshops</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact">Events</a></li>
+    <li><a href="#collab">Collabs</a></li>
+    <li><a href="#contactus">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Join Us</a>
+  <a href="#contactus" class="nav-cta">Say Hi 🌸</a>
 </nav>
 
 <!-- HOME PAGE -->
@@ -328,8 +367,8 @@
         <p class="section-desc" style="margin-bottom:1rem">Gadis Jangok started as a small creative gathering among friends who simply wanted to make pretty things together. What began in a cozy corner has grown into a warm community of makers across Malaysia.</p>
         <p class="section-desc">We run workshops that feel like a warm hug — welcoming, unhurried, and full of laughter. All materials are provided. No experience required, just a willing heart.</p>
         <div class="badges">
-          <span class="badge">Est. 2021</span>
-          <span class="badge">Shah Alam based</span>
+          <span class="badge">Est. 2025</span>
+          <span class="badge">Terengganu based</span>
           <span class="badge">Women-led</span>
           <span class="badge">Beginner-friendly</span>
         </div>
@@ -347,7 +386,7 @@
         <span class="section-label">Our Works</span>
         <h2 class="section-title">A glimpse of the <em>magic</em></h2>
       </div>
-      <a href="https://instagram.com" target="_blank" class="btn-outline">Follow on Instagram</a>
+      <a href="https://instagram.com/gadisjangok target="_blank" class="btn-outline">Follow on Instagram</a>
     </div>
     <div class="gallery-grid">
       <div class="g-item tall">
@@ -562,6 +601,38 @@
   </div>
 </section>
 
+<!-- CONTACT US -->
+<section id="contactus">
+  <div class="container">
+    <div class="cu-inner">
+      <span class="section-label">Get In Touch</span>
+      <h2 class="section-title">Say <em>Hello</em> 🌸</h2>
+      <p class="section-desc" style="margin:0 auto;text-align:center">Have questions, ideas, or just want to say hi? Leave us your name and a little note — we read every single one.</p>
+
+      <div class="cu-form">
+        <div class="cu-field">
+          <label>Your Name</label>
+          <input type="text" id="cu-name" placeholder="e.g. Aisyah" required>
+        </div>
+        <div class="cu-field">
+          <label>Your Feedback / Message</label>
+          <textarea id="cu-msg" placeholder="Tell us anything — what you loved, what you'd like to see, or just drop a kind word 🌸" required></textarea>
+        </div>
+        <button class="cu-submit" onclick="submitFeedback()">Send Feedback 🌸</button>
+        <div class="cu-success" id="cu-success">
+          ✅ Thank you so much! We got your message and will read it with love 🌸
+        </div>
+      </div>
+
+      <div class="social-row" style="margin-top:2.5rem">
+        <a href="https://www.instagram.com/gadisjangok/" target="_blank" class="soc-btn">Instagram</a>
+        <a href="https://www.tiktok.com/@gadisjangok" target="_blank" class="soc-btn">TikTok</a>
+        <a href="https://wa.me/60142945456" target="_blank" class="soc-btn">WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div style="display:flex;justify-content:center;margin-bottom:1.1rem">
@@ -575,6 +646,7 @@
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#contact">Events</a></li>
     <li><a href="#collab">Collabs</a></li>
+    <li><a href="#contact us">Contact</a></li>
   </ul>
   <p class="f-copy">© 2026 Gadis Jangok · gadisjangok.com · All rights reserved</p>
 </footer>
@@ -608,8 +680,47 @@
   function prevSlide() { goToSlide(current - 1); resetTimer(); }
   function resetTimer() { clearInterval(timer); timer = setInterval(nextSlide, 4000); }
 
-  // auto-start
-  timer = setInterval(nextSlide, 4000);
+  // FEEDBACK FORM → GOOGLE SHEETS
+  // HOW TO SET UP:
+  // 1. Go to Google Sheets → Extensions → Apps Script
+  // 2. Paste this code and deploy as Web App (access: Anyone):
+  //    function doPost(e) {
+  //      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  //      var data = JSON.parse(e.postData.contents);
+  //      sheet.appendRow([new Date(), data.name, data.feedback]);
+  //      return ContentService.createTextOutput('OK');
+  //    }
+  // 3. Copy the Web App URL and paste it below replacing DUMMY_GOOGLE_SCRIPT_URL
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbx4xHAb7agiQua3BsH6nKuhfZR14vA5UK8q05FTYQxXHIgVnsywYDgVxF62tDTOm4u8ww/exec';
+
+  async function submitFeedback() {
+    const name = document.getElementById('cu-name').value.trim();
+    const msg  = document.getElementById('cu-msg').value.trim();
+    const btn  = document.querySelector('.cu-submit');
+    const ok   = document.getElementById('cu-success');
+
+    if (!name || !msg) { alert('Please fill in both fields 🌸'); return; }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    try {
+      await fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({name, feedback: msg})
+      });
+      document.getElementById('cu-name').value = '';
+      document.getElementById('cu-msg').value = '';
+      ok.style.display = 'block';
+    } catch(err) {
+      alert('Oops! Something went wrong. Try again or reach us on WhatsApp 🌸');
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Send Feedback 🌸';
+  }
 </script>
 
 </body>
