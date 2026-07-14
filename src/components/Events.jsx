@@ -4,9 +4,9 @@ const hideOnError = (e) => {
   e.currentTarget.style.display = 'none'
 }
 
-function EventCard({ ev, status }) {
+function EventCard({ ev, status, index = 0 }) {
   return (
-    <div className="ev-card">
+    <div className="ev-card reveal" style={{ transitionDelay: `${index * 80}ms` }}>
       <div className="ev-img" style={{ background: ev.bg }}>
         <img src={ev.img} alt={ev.alt} onError={hideOnError} />
         <span className={`ev-status ${status}`}>{status === 'upcoming' ? 'Upcoming' : 'Past'}</span>
@@ -25,25 +25,29 @@ export default function Events() {
     <section id="contact">
       <div className="container">
         <div style={{ marginBottom: '3.5rem' }}>
-          <span className="section-label">What's On</span>
-          <h2 className="section-title">
-            Upcoming <em>Events</em>
-          </h2>
+          <div className="reveal">
+            <span className="section-label">What's On</span>
+            <h2 className="section-title">
+              Upcoming <em>Events</em>
+            </h2>
+          </div>
           <div className="events-grid">
             {upcomingEvents.map((ev, i) => (
-              <EventCard ev={ev} status="upcoming" key={i} />
+              <EventCard ev={ev} status="upcoming" index={i} key={i} />
             ))}
           </div>
         </div>
 
         <div>
-          <span className="section-label">Looking Back</span>
-          <h2 className="section-title">
-            Past <em>Events</em>
-          </h2>
+          <div className="reveal">
+            <span className="section-label">Looking Back</span>
+            <h2 className="section-title">
+              Past <em>Events</em>
+            </h2>
+          </div>
           <div className="events-grid">
             {pastEvents.map((ev, i) => (
-              <EventCard ev={ev} status="past" key={i} />
+              <EventCard ev={ev} status="past" index={i} key={i} />
             ))}
           </div>
         </div>

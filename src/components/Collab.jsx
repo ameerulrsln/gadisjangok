@@ -22,14 +22,14 @@ export default function Collab() {
   return (
     <section id="collab">
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+        <div className="reveal" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
           <span className="section-label">People We've Made With</span>
           <h2 className="section-title">
             Past <em>Collaborators</em>
           </h2>
         </div>
 
-        <div className="carousel-wrap">
+        <div className="carousel-wrap reveal">
           <div
             className="carousel-track"
             style={{ transform: `translateX(-${current * 100}%)` }}

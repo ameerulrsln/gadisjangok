@@ -39,7 +39,7 @@ export default function ContactUs() {
   return (
     <section id="contactus">
       <div className="container">
-        <div className="cu-inner">
+        <div className="cu-inner reveal">
           <span className="section-label">Get In Touch</span>
           <h2 className="section-title">
             Say <em>Hello</em> 🌸

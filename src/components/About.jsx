@@ -3,7 +3,7 @@ export default function About() {
     <section id="about">
       <div className="container">
         <div className="about-grid">
-          <div className="about-visual">
+          <div className="about-visual reveal">
             <div className="about-frame">
               🌸
               <div className="about-deco"></div>
@@ -13,7 +13,7 @@ export default function About() {
               <div className="about-stat-lbl">Happy makers &amp; counting</div>
             </div>
           </div>
-          <div>
+          <div className="reveal" style={{ transitionDelay: '120ms' }}>
             <span className="section-label">Our Story</span>
             <h2 className="section-title">
               Born from <em>a love of making</em>

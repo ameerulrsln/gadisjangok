@@ -11,7 +11,7 @@ export default function Workshops() {
   return (
     <section id="workshops">
       <div className="container">
-        <div className="wshops-head">
+        <div className="wshops-head reveal">
           <span className="section-label">What We Offer</span>
           <h2 className="section-title">
             Our <em>Workshops</em>
@@ -22,8 +22,12 @@ export default function Workshops() {
           </p>
         </div>
         <div className="workshop-grid">
-          {workshops.map((w) => (
-            <div className="w-card" key={w.title}>
+          {workshops.map((w, i) => (
+            <div
+              className="w-card reveal"
+              style={{ transitionDelay: `${i * 90}ms` }}
+              key={w.title}
+            >
               <div className={`w-img ${w.imgClass}`}>
                 {w.tag && <span className="w-tag">{w.tag}</span>}
                 <img src={w.img} alt={w.alt} onError={hideOnError} />
