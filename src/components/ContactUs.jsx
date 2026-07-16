@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { SHEET_URL } from '../data/content.js'
+import { SHEET_URL } from '../data/site.js'
 
 export default function ContactUs() {
   const [name, setName] = useState('')

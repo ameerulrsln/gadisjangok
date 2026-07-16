@@ -1,14 +1,12 @@
-import { upcomingEvents, pastEvents } from '../data/content.js'
-
-const hideOnError = (e) => {
-  e.currentTarget.style.display = 'none'
-}
+import { upcomingEvents } from '../data/upcomingEvents.js'
+import { pastEvents } from '../data/pastEvents.js'
+import SmartImage from './SmartImage.jsx'
 
 function EventCard({ ev, status, index = 0 }) {
   return (
     <div className="ev-card reveal" style={{ transitionDelay: `${index * 80}ms` }}>
       <div className="ev-img" style={{ background: ev.bg }}>
-        <img src={ev.img} alt={ev.alt} onError={hideOnError} />
+        <SmartImage src={ev.img} alt={ev.alt} />
         <span className={`ev-status ${status}`}>{status === 'upcoming' ? 'Upcoming' : 'Past'}</span>
       </div>
       <div className="ev-body">

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { galleryItems } from '../data/content.js'
+import { galleryItems } from '../data/gallery.js'
+import SmartImage from './SmartImage.jsx'
 
 export default function Gallery() {
   const [openIndex, setOpenIndex] = useState(null)
@@ -60,7 +61,7 @@ export default function Gallery() {
                 className={`g-pic ${g.cls}`}
                 style={g.modifier === 'tall' ? { height: '100%' } : undefined}
               >
-                {g.img ? <img src={g.img} alt={g.alt || ''} /> : g.emoji}
+                <SmartImage src={g.img} alt={g.alt || ''} fallback={g.emoji} />
               </div>
               <div className="g-overlay"></div>
             </button>
@@ -91,7 +92,7 @@ export default function Gallery() {
         </button>
         {active && (
           <div className={`lightbox-stage ${active.cls}`} onClick={(e) => e.stopPropagation()}>
-            {active.img ? <img src={active.img} alt={active.alt || ''} /> : active.emoji}
+            <SmartImage src={active.img} alt={active.alt || ''} fallback={active.emoji} />
           </div>
         )}
         <button

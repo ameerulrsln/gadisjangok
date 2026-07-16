@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react'
-import { collabSlides } from '../data/content.js'
-
-const hideOnError = (e) => {
-  e.currentTarget.style.display = 'none'
-}
+import { collabSlides } from '../data/collabs.js'
+import SmartImage from './SmartImage.jsx'
 
 export default function Collab() {
   const [current, setCurrent] = useState(0)
@@ -37,7 +34,7 @@ export default function Collab() {
             {collabSlides.map((s, i) => (
               <div className="carousel-slide" key={i}>
                 <div className="carousel-slide-placeholder" style={{ background: s.bg }}>
-                  <img
+                  <SmartImage
                     src={s.img}
                     alt={s.alt}
                     style={{
@@ -47,12 +44,15 @@ export default function Collab() {
                       position: 'absolute',
                       inset: 0,
                     }}
-                    onError={hideOnError}
+                    fallback={
+                      <>
+                        <span style={{ position: 'relative' }}>Your Photo Here</span>
+                        <span style={{ position: 'relative', fontSize: '0.68rem', opacity: 0.6 }}>
+                          Add: {s.img}
+                        </span>
+                      </>
+                    }
                   />
-                  <span style={{ position: 'relative' }}>Your Photo Here</span>
-                  <span style={{ position: 'relative', fontSize: '0.68rem', opacity: 0.6 }}>
-                    Replace: {s.img}
-                  </span>
                 </div>
                 <div className="slide-caption">
                   <div className="slide-caption-title">{s.title}</div>

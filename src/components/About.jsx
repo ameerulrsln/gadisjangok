@@ -1,3 +1,6 @@
+import { about } from '../data/about.js'
+import SmartImage from './SmartImage.jsx'
+
 export default function About() {
   return (
     <section id="about">
@@ -5,7 +8,12 @@ export default function About() {
         <div className="about-grid">
           <div className="about-visual reveal">
             <div className="about-frame">
-              🌸
+              <SmartImage
+                src={about.img}
+                alt={about.alt}
+                fallback={about.emoji}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
               <div className="about-deco"></div>
             </div>
             <div className="about-stat">

@@ -1,4 +1,4 @@
-import { navLinks } from '../data/content.js'
+import { navLinks } from '../data/site.js'
 
 export default function Footer() {
   return (

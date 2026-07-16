@@ -104,6 +104,7 @@ h2.section-title em{color:var(--rose-dark);font-style:italic}
 .g-item.tall{grid-row:span 2}
 .g-item.wide{grid-column:span 2}
 .g-pic{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+.g-pic img{width:100%;height:100%;object-fit:cover;display:block}
 .g1{background:linear-gradient(135deg,#FFC4C4,#FFF1E6)}
 .g2{background:linear-gradient(135deg,#FFE1D0,#CFE6FF)}
 .g3{background:linear-gradient(135deg,#DCEBFF,#EAF2FF)}

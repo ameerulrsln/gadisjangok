@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { navLinks } from '../data/content.js'
+import { navLinks } from '../data/site.js'
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)

@@ -1,8 +1,5 @@
-import { workshops } from '../data/content.js'
-
-const hideOnError = (e) => {
-  e.currentTarget.style.display = 'none'
-}
+import { workshops } from '../data/workshops.js'
+import SmartImage from './SmartImage.jsx'
 
 const scrollToContact = () =>
   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
@@ -30,7 +27,7 @@ export default function Workshops() {
             >
               <div className={`w-img ${w.imgClass}`}>
                 {w.tag && <span className="w-tag">{w.tag}</span>}
-                <img src={w.img} alt={w.alt} onError={hideOnError} />
+                <SmartImage src={w.img} alt={w.alt} />
               </div>
               <div className="w-body">
                 <h3 className="w-title">{w.title}</h3>
