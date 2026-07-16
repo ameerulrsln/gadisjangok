@@ -37,22 +37,22 @@ export const galleryItems = [
 ]
 
 export const upcomingEvents = [
-  { bg: 'linear-gradient(135deg,#F9E4D4,#F5C4D0)', img: 'images/event-upcoming-1.jpg', alt: 'Upcoming Event 1', date: '📅 Date · Time', title: 'Batik Painting Session', loc: '📍 Venue Name, Kuala Terengganu' },
-  { bg: 'linear-gradient(135deg,#E8DCF0,#D4C4E8)', img: 'images/event-upcoming-2.jpg', alt: 'Upcoming Event 2', date: '📅 Date · Time', title: 'Zine Making Workshop', loc: '📍 Venue Name, Kuala Terengganu' },
-  { bg: 'linear-gradient(135deg,#C8D8C0,#D8ECD4)', img: 'images/event-upcoming-3.jpg', alt: 'Upcoming Event 3', date: '📅 Date · Time', title: 'Flower Making Day', loc: '📍 Venue Name, Kuala Terengganu' },
+  { bg: 'linear-gradient(135deg,#FFE3D2,#FFC4C4)', img: 'images/event-upcoming-1.jpg', alt: 'Upcoming Event 1', date: '📅 Date · Time', title: 'Batik Painting Session', loc: '📍 Venue Name, Kuala Terengganu' },
+  { bg: 'linear-gradient(135deg,#DCEBFF,#BFD9FF)', img: 'images/event-upcoming-2.jpg', alt: 'Upcoming Event 2', date: '📅 Date · Time', title: 'Zine Making Workshop', loc: '📍 Venue Name, Kuala Terengganu' },
+  { bg: 'linear-gradient(135deg,#FFE1D0,#FFD8CC)', img: 'images/event-upcoming-3.jpg', alt: 'Upcoming Event 3', date: '📅 Date · Time', title: 'Flower Making Day', loc: '📍 Venue Name, Kuala Terengganu' },
 ]
 
 export const pastEvents = [
-  { bg: 'linear-gradient(135deg,#FFF4A8,#F5C4D0)', img: 'images/event-past-1.jpg', alt: 'Past Event 1', date: '📅 Past Date', title: 'Event Name Here', loc: '📍 Venue Name' },
-  { bg: 'linear-gradient(135deg,#FFD3E3,#E8DCF0)', img: 'images/event-past-2.jpg', alt: 'Past Event 2', date: '📅 Past Date', title: 'Event Name Here', loc: '📍 Venue Name' },
-  { bg: 'linear-gradient(135deg,#C8D8C0,#FFD3E3)', img: 'images/event-past-3.jpg', alt: 'Past Event 3', date: '📅 Past Date', title: 'Event Name Here', loc: '📍 Venue Name' },
+  { bg: 'linear-gradient(135deg,#FFEDD5,#FFC4C4)', img: 'images/event-past-1.jpg', alt: 'Past Event 1', date: '📅 Past Date', title: 'Event Name Here', loc: '📍 Venue Name' },
+  { bg: 'linear-gradient(135deg,#FFD9CF,#DCEBFF)', img: 'images/event-past-2.jpg', alt: 'Past Event 2', date: '📅 Past Date', title: 'Event Name Here', loc: '📍 Venue Name' },
+  { bg: 'linear-gradient(135deg,#FFE1D0,#FFD9CF)', img: 'images/event-past-3.jpg', alt: 'Past Event 3', date: '📅 Past Date', title: 'Event Name Here', loc: '📍 Venue Name' },
 ]
 
 export const collabSlides = [
-  { bg: 'linear-gradient(135deg,#F9E4D4,#F5C4D0)', img: 'images/collab-1.jpg', alt: 'Collaborator 1', title: 'Collaborator / Event Name', sub: 'Location · Year' },
-  { bg: 'linear-gradient(135deg,#E8DCF0,#D4C4E8)', img: 'images/collab-2.jpg', alt: 'Collaborator 2', title: 'Collaborator / Event Name', sub: 'Location · Year' },
-  { bg: 'linear-gradient(135deg,#C8D8C0,#D8ECD4)', img: 'images/collab-3.jpg', alt: 'Collaborator 3', title: 'Collaborator / Event Name', sub: 'Location · Year' },
-  { bg: 'linear-gradient(135deg,#FFF4A8,#FFD3E3)', img: 'images/collab-4.jpg', alt: 'Collaborator 4', title: 'Collaborator / Event Name', sub: 'Location · Year' },
+  { bg: 'linear-gradient(135deg,#FFE3D2,#FFC4C4)', img: 'images/collab-1.jpg', alt: 'Collaborator 1', title: 'Collaborator / Event Name', sub: 'Location · Year' },
+  { bg: 'linear-gradient(135deg,#DCEBFF,#BFD9FF)', img: 'images/collab-2.jpg', alt: 'Collaborator 2', title: 'Collaborator / Event Name', sub: 'Location · Year' },
+  { bg: 'linear-gradient(135deg,#FFE1D0,#FFD8CC)', img: 'images/collab-3.jpg', alt: 'Collaborator 3', title: 'Collaborator / Event Name', sub: 'Location · Year' },
+  { bg: 'linear-gradient(135deg,#FFEDD5,#FFD9CF)', img: 'images/collab-4.jpg', alt: 'Collaborator 4', title: 'Collaborator / Event Name', sub: 'Location · Year' },
 ]
 
 export const navLinks = [
