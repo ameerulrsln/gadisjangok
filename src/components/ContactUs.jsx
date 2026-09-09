@@ -12,7 +12,7 @@ export default function ContactUs() {
     const trimmedMsg = msg.trim()
 
     if (!trimmedName || !trimmedMsg) {
-      alert('Please fill in both fields 🌸')
+      alert('Please fill in both fields.')
       return
     }
 
@@ -42,7 +42,7 @@ export default function ContactUs() {
         <div className="cu-inner reveal">
           <span className="section-label">Get In Touch</span>
           <h2 className="section-title">
-            Say <em>Hello</em> 🌸
+            Say <em>Hello</em> <span className="title-mark" aria-hidden="true">✦</span>
           </h2>
           <p className="section-desc" style={{ margin: '0 auto', textAlign: 'center' }}>
             Have questions, ideas, or just want to say hi? Leave us your name and a little note —
@@ -65,7 +65,7 @@ export default function ContactUs() {
               <label htmlFor="cu-msg">Your Feedback / Message</label>
               <textarea
                 id="cu-msg"
-                placeholder="Tell us anything — what you loved, what you'd like to see, or just drop a kind word 🌸"
+                placeholder="Tell us anything — what you loved, what you'd like to see, or just drop a kind word."
                 value={msg}
                 onChange={(e) => setMsg(e.target.value)}
                 required
@@ -77,11 +77,11 @@ export default function ContactUs() {
               onClick={submitFeedback}
               disabled={sending}
             >
-              {sending ? 'Sending...' : ' Send Feedback 🌸'}
+              {sending ? 'Sending...' : 'Send Feedback  →'}
             </button>
             {success && (
               <div className="cu-success">
-                ✅ Thank you so much! We got your message and will read it with love 🌸
+                Thank you so much! We got your message and will read it with love.
               </div>
             )}
           </div>

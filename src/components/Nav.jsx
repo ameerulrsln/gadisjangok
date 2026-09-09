@@ -50,7 +50,7 @@ export default function Nav() {
           ))}
         </ul>
         <a href="#contactus" className="nav-cta">
-          Say Hi 🌸
+          Say Hi <span className="nav-spark" aria-hidden="true">✦</span>
         </a>
         <button
           className={`nav-toggle ${menuOpen ? 'open' : ''}`.trim()}
@@ -76,7 +76,7 @@ export default function Nav() {
           </a>
         ))}
         <a href="#contactus" className="nav-cta" onClick={() => setMenuOpen(false)}>
-          Say Hi 🌸
+          Say Hi <span className="nav-spark" aria-hidden="true">✦</span>
         </a>
       </div>
     </>

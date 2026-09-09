@@ -1,14 +1,13 @@
+import CraftIcon from './CraftIcon.jsx'
+
 export default function Hero() {
   return (
     <section id="home">
-      <div className="blob blob-1"></div>
-      <div className="blob blob-2"></div>
-      <div className="blob blob-3"></div>
       <div className="hero-floats">
-        <div className="fe fe1">🌸</div>
-        <div className="fe fe2">🌿</div>
-        <div className="fe fe3">🎨</div>
-        <div className="fe fe4">✿</div>
+        <div className="fe fe1"><CraftIcon name="flower" /></div>
+        <div className="fe fe2"><CraftIcon name="spark" /></div>
+        <div className="fe fe3"><CraftIcon name="brush" /></div>
+        <div className="fe fe4"><CraftIcon name="book" /></div>
       </div>
       <div className="hero-content">
         <div className="hero-badge">Art community · Kuala Terengganu , Malaysia</div>
@@ -29,6 +28,7 @@ export default function Hero() {
             Our Story
           </a>
         </div>
+        <div className="hero-notes"><span>All materials included</span><span>No experience needed</span><span>Made together, with love</span></div>
         <div className="scroll-hint">
           <div className="scroll-line"></div>
           scroll

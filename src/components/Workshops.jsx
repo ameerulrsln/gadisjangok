@@ -1,5 +1,6 @@
 import { workshops } from '../data/workshops.js'
 import SmartImage from './SmartImage.jsx'
+import CraftIcon from './CraftIcon.jsx'
 
 const scrollToContact = () =>
   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
@@ -33,8 +34,8 @@ export default function Workshops() {
                 <h3 className="w-title">{w.title}</h3>
                 <p className="w-desc">{w.desc}</p>
                 <div className="w-meta">
-                  {w.meta.map((m) => (
-                    <span key={m}>{m}</span>
+                  {w.meta.map((m, index) => (
+                    <span key={m}><CraftIcon name={['clock', 'people', 'spark'][index]} />{m}</span>
                   ))}
                 </div>
                 <div className="w-footer">
