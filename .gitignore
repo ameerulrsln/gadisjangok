@@ -3,3 +3,8 @@ dist
 .DS_Store
 *.local
 .vite
+
+# Environment secrets — .env.example is the only env file that may be committed
+.env
+.env.*
+!.env.example
