@@ -22,7 +22,7 @@
 .admin-nav-link:hover{color:var(--rose-dark);transform:translateY(-2px)}
 .admin-nav-signout{background:none;border:1px solid #d5b7a3;border-radius:999px;padding:.45rem 1.1rem;font-size:.74rem;letter-spacing:.05em;cursor:pointer;color:var(--rose-dark);font-family:var(--font-body);transition:background .3s,color .3s}
 .admin-nav-signout:hover{background:var(--rose-dark);color:#fff}
-@media(max-width:560px){.admin-nav{padding:.45rem .9rem}.admin-nav-user{display:none}}
+@media(max-width:560px){.admin-nav{padding:.45rem .9rem}.admin-nav-user{display:none}.admin-nav-link{display:inline-flex;align-items:center;min-height:44px}.admin-nav-signout{min-height:44px}}
 
 .admin-shell{max-width:920px;margin:0 auto;padding:6.5rem 1.25rem 4rem;font-family:var(--font-body)}
 .admin-login{padding-top:5.5rem}
