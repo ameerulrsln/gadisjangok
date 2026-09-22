@@ -1,6 +1,16 @@
 import { upcomingEvents } from '../data/upcomingEvents.js'
 import { pastEvents } from '../data/pastEvents.js'
 import SmartImage from './SmartImage.jsx'
+import { useTable } from '../hooks/useContent.js'
+
+// Map a DB row to the shape EventCard already renders.
+const fromDb = (ev) => ({
+  img: ev.image_url,
+  alt: ev.image_alt || ev.title,
+  date: ev.event_date,
+  title: ev.title,
+  loc: ev.location,
+})
 
 function EventCard({ ev, status, index = 0 }) {
   return (
@@ -19,6 +29,13 @@ function EventCard({ ev, status, index = 0 }) {
 }
 
 export default function Events() {
+  const dbEvents = useTable('events', { fallback: null })
+  const hasDb = Array.isArray(dbEvents) && dbEvents.length > 0 && dbEvents[0].kind !== undefined
+  const upcoming = hasDb
+    ? dbEvents.filter((e) => e.kind === 'upcoming').map(fromDb)
+    : upcomingEvents
+  const past = hasDb ? dbEvents.filter((e) => e.kind === 'past').map(fromDb) : pastEvents
+
   return (
     <section id="contact">
       <div className="container">
@@ -30,7 +47,7 @@ export default function Events() {
             </h2>
           </div>
           <div className="events-grid">
-            {upcomingEvents.map((ev, i) => (
+            {upcoming.map((ev, i) => (
               <EventCard ev={ev} status="upcoming" index={i} key={i} />
             ))}
           </div>
@@ -44,7 +61,7 @@ export default function Events() {
             </h2>
           </div>
           <div className="events-grid">
-            {pastEvents.map((ev, i) => (
+            {past.map((ev, i) => (
               <EventCard ev={ev} status="past" index={i} key={i} />
             ))}
           </div>

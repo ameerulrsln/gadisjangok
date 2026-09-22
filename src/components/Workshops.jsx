@@ -1,11 +1,26 @@
 import { workshops } from '../data/workshops.js'
 import SmartImage from './SmartImage.jsx'
 import CraftIcon from './CraftIcon.jsx'
+import { useTable } from '../hooks/useContent.js'
 
 const scrollToContact = () =>
   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
 
 export default function Workshops() {
+  const dbWorkshops = useTable('workshops', { fallback: null })
+  const list =
+    Array.isArray(dbWorkshops) && dbWorkshops.length && dbWorkshops[0].description !== undefined
+      ? dbWorkshops.map((w, i) => ({
+          imgClass: ['w-batik', 'w-zine', 'w-flower'][i % 3],
+          tag: w.tag,
+          img: w.image_url,
+          alt: w.image_alt || w.title,
+          title: w.title,
+          desc: w.description,
+          meta: w.meta || [],
+        }))
+      : workshops
+
   return (
     <section id="workshops">
       <div className="container">
@@ -20,7 +35,7 @@ export default function Workshops() {
           </p>
         </div>
         <div className="workshop-grid">
-          {workshops.map((w, i) => (
+          {list.map((w, i) => (
             <div
               className="w-card reveal"
               style={{ transitionDelay: `${i * 90}ms` }}

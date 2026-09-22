@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { SHEET_URL } from '../data/site.js'
+import { supabase, supabaseReady } from '../lib/supabase.js'
 
 export default function ContactUs() {
   const [name, setName] = useState('')
@@ -19,12 +20,20 @@ export default function ContactUs() {
     setSending(true)
     setSuccess(false)
 
-    const form = new FormData()
-    form.append('name', trimmedName)
-    form.append('feedback', trimmedMsg)
-
     try {
-      await fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', body: form })
+      if (supabaseReady) {
+        // Primary path: save into the contact_messages table.
+        const { error } = await supabase
+          .from('contact_messages')
+          .insert({ name: trimmedName, message: trimmedMsg })
+        if (error) throw error
+      } else {
+        // Legacy path while Supabase isn't configured yet.
+        const form = new FormData()
+        form.append('name', trimmedName)
+        form.append('feedback', trimmedMsg)
+        await fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', body: form })
+      }
       setName('')
       setMsg('')
       setSuccess(true)

@@ -1,14 +1,25 @@
 import { useEffect, useState } from 'react'
 import { galleryItems } from '../data/gallery.js'
 import SmartImage from './SmartImage.jsx'
+import { useTable } from '../hooks/useContent.js'
 
 export default function Gallery() {
+  const dbItems = useTable('gallery_items', { fallback: null })
+  const items =
+    Array.isArray(dbItems) && dbItems.length && dbItems[0].image_url !== undefined
+      ? dbItems.map((g, i) => ({
+          img: g.image_url,
+          alt: g.image_alt,
+          modifier: g.modifier || '',
+          cls: ['g1', 'g2', 'g3', 'g4', 'g5'][i % 5],
+        }))
+      : galleryItems
   const [openIndex, setOpenIndex] = useState(null)
   const isOpen = openIndex !== null
 
   const close = () => setOpenIndex(null)
-  const prev = () => setOpenIndex((i) => (i + galleryItems.length - 1) % galleryItems.length)
-  const next = () => setOpenIndex((i) => (i + 1) % galleryItems.length)
+  const prev = () => setOpenIndex((i) => (i + items.length - 1) % items.length)
+  const next = () => setOpenIndex((i) => (i + 1) % items.length)
 
   // Keyboard controls while the lightbox is open.
   useEffect(() => {
@@ -26,7 +37,7 @@ export default function Gallery() {
     }
   }, [isOpen])
 
-  const active = isOpen ? galleryItems[openIndex] : null
+  const active = isOpen ? items[openIndex] : null
 
   return (
     <section id="gallery">
@@ -48,7 +59,7 @@ export default function Gallery() {
           </a>
         </div>
         <div className="gallery-grid">
-          {galleryItems.map((g, i) => (
+          {items.map((g, i) => (
             <button
               type="button"
               className={`g-item reveal ${g.modifier}`.trim()}

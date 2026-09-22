@@ -4,6 +4,7 @@ import Workshops from './components/Workshops.jsx'
 import About from './components/About.jsx'
 import Gallery from './components/Gallery.jsx'
 import Events from './components/Events.jsx'
+import Reports from './components/Reports.jsx'
 import Collab from './components/Collab.jsx'
 import ContactUs from './components/ContactUs.jsx'
 import Footer from './components/Footer.jsx'
@@ -24,6 +25,7 @@ export default function App() {
         <About />
         <Gallery />
         <Events />
+        <Reports />
         <Collab />
         <ContactUs />
       </main>

@@ -1,10 +1,22 @@
 import { useEffect, useState } from 'react'
 import { collabSlides } from '../data/collabs.js'
 import SmartImage from './SmartImage.jsx'
+import { useTable } from '../hooks/useContent.js'
 
 export default function Collab() {
+  const dbSlides = useTable('collaborators', { fallback: null })
+  const slides =
+    Array.isArray(dbSlides) && dbSlides.length && dbSlides[0].subtitle !== undefined
+      ? dbSlides.map((s, i) => ({
+          bg: ['#FFE3D2', '#DCEBFF', '#FFE1D0', '#FFEDD5'][i % 4],
+          img: s.image_url,
+          alt: s.image_alt || s.title,
+          title: s.title,
+          sub: s.subtitle,
+        }))
+      : collabSlides
   const [current, setCurrent] = useState(0)
-  const total = collabSlides.length
+  const total = slides.length
 
   const goToSlide = (n) => setCurrent(((n % total) + total) % total)
   const nextSlide = () => goToSlide(current + 1)
@@ -31,7 +43,7 @@ export default function Collab() {
             className="carousel-track"
             style={{ transform: `translateX(-${current * 100}%)` }}
           >
-            {collabSlides.map((s, i) => (
+            {slides.map((s, i) => (
               <div className="carousel-slide" key={i}>
                 <div className="carousel-slide-placeholder" style={{ background: s.bg }}>
                   <SmartImage
@@ -64,7 +76,7 @@ export default function Collab() {
         </div>
 
         <div className="carousel-dots">
-          {collabSlides.map((_, i) => (
+          {slides.map((_, i) => (
             <button
               key={i}
               className={`carousel-dot ${i === current ? 'active' : ''}`.trim()}
