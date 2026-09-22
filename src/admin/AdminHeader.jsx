@@ -1,3 +1,5 @@
+import AdminIcon from './AdminIcons.jsx'
+
 // Branded sticky header for the /admin area, matching the public site's nav.
 export default function AdminHeader({ email, onSignOut }) {
   return (
@@ -7,12 +9,17 @@ export default function AdminHeader({ email, onSignOut }) {
         <span className="admin-nav-badge">Admin</span>
       </a>
       <div className="admin-nav-right">
-        {email && <span className="admin-nav-user">{email}</span>}
+        {email && (
+          <span className="admin-nav-user" title={email}>
+            {email}
+          </span>
+        )}
         <a className="admin-nav-link" href="/">
           View site
         </a>
         {onSignOut && (
           <button type="button" className="admin-nav-signout" onClick={onSignOut}>
+            <AdminIcon name="logout" size={15} />
             Sign out
           </button>
         )}
