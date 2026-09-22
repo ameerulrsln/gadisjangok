@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { supabase, uploadImage } from '../lib/supabase.js'
+import AdminHeader from './AdminHeader.jsx'
 
 // Which fields each content type shows in the admin form.
 const SECTIONS = {
@@ -114,13 +115,7 @@ export default function AdminDashboard({ session }) {
 
   return (
     <div className="admin-shell">
-      <header className="admin-head">
-        <h1>Gadis Jangok · Admin</h1>
-        <div>
-          <span className="admin-user">{session.user.email}</span>
-          <button onClick={() => supabase.auth.signOut()}>Sign out</button>
-        </div>
-      </header>
+      <AdminHeader email={session.user.email} onSignOut={() => supabase.auth.signOut()} />
 
       <nav className="admin-tabs">
         {Object.entries(SECTIONS).map(([key, s]) => (

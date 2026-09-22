@@ -11,11 +11,21 @@
 .admin-card button{margin-top:.4rem;background:var(--rose-dark);color:#fff;border:none;border-radius:999px;padding:.7rem 1.6rem;font-family:var(--font-body);cursor:pointer}
 .admin-error{color:#b3261e;font-size:.85rem}.admin-ok{color:#2f7d4f;font-size:.85rem;margin-top:.6rem}
 
-.admin-shell{max-width:920px;margin:0 auto;padding:2.5rem 1.25rem 4rem;font-family:var(--font-body)}
-.admin-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
-.admin-head h1{font-family:var(--font-head);font-size:1.5rem;color:var(--text)}
-.admin-user{font-size:.82rem;color:var(--text-light);margin-right:1rem}
-.admin-head button{background:none;border:1px solid #d5b7a3;border-radius:999px;padding:.4rem 1rem;cursor:pointer;color:var(--rose-dark)}
+/* Branded sticky header for /admin, matching the public site nav */
+.admin-nav{position:fixed;top:0;left:0;width:100%;z-index:100;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.55rem 2rem;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,107,107,.2);box-shadow:0 10px 26px rgba(255,107,107,.12)}
+.admin-nav-brand{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.admin-nav-brand img{display:block;width:clamp(85px,11vw,100px);height:auto;object-fit:contain}
+.admin-nav-badge{font-family:var(--font-head);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--rose-dark);padding:.28rem .7rem;border-radius:999px}
+.admin-nav-right{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.admin-nav-user{font-size:.82rem;color:var(--text-light)}
+.admin-nav-link{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:#8C5E5E;text-decoration:none;transition:color .3s,transform .3s}
+.admin-nav-link:hover{color:var(--rose-dark);transform:translateY(-2px)}
+.admin-nav-signout{background:none;border:1px solid #d5b7a3;border-radius:999px;padding:.45rem 1.1rem;font-size:.74rem;letter-spacing:.05em;cursor:pointer;color:var(--rose-dark);font-family:var(--font-body);transition:background .3s,color .3s}
+.admin-nav-signout:hover{background:var(--rose-dark);color:#fff}
+@media(max-width:560px){.admin-nav{padding:.45rem .9rem}.admin-nav-user{display:none}}
+
+.admin-shell{max-width:920px;margin:0 auto;padding:6.5rem 1.25rem 4rem;font-family:var(--font-body)}
+.admin-login{padding-top:5.5rem}
 .admin-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
 .admin-tabs button{background:#fff8e9;border:1px solid #d5b7a3;border-radius:999px;padding:.5rem 1.1rem;font-size:.82rem;cursor:pointer;color:var(--text)}
 .admin-tabs button.active{background:var(--rose-dark);border-color:var(--rose-dark);color:#fff}

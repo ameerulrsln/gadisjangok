@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase.js'
 import AdminDashboard from './AdminDashboard.jsx'
+import AdminHeader from './AdminHeader.jsx'
 
 export default function AdminApp() {
   const [session, setSession] = useState(undefined) // undefined = loading
@@ -29,6 +30,7 @@ export default function AdminApp() {
   if (!session) {
     return (
       <div className="admin-login">
+        <AdminHeader />
         <form onSubmit={signIn} className="admin-card">
           <h1>Gadis Jangok · Admin</h1>
           <p>Sign in to publish reports, photos and site content.</p>
