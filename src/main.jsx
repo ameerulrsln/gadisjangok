@@ -6,11 +6,9 @@ import { supabaseReady } from './lib/supabase.js'
 import './styles/global.css'
 import './styles/admin.css'
 
-// The admin is reachable at /admin on the main site, and at the root of the
-// admin subdomain (admin.gadisjangok.com). It needs Supabase configured.
-const isAdminHost = window.location.hostname.startsWith('admin.')
-const isAdminPath = window.location.pathname.startsWith('/admin')
-const isAdmin = isAdminHost || isAdminPath
+// The admin lives only on the admin subdomain (admin.gadisjangok.com) at its
+// root, and needs Supabase configured. The main site has no /admin route.
+const isAdmin = window.location.hostname.startsWith('admin.')
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
