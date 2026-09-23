@@ -219,26 +219,24 @@ export default function AdminDashboard({ session }) {
 
   return (
     <div className="admin-shell">
-      <AdminHeader email={session.user.email} onSignOut={() => supabase.auth.signOut()} />
-
-      <div className="admin-welcome">
-        <h1>Hi, {firstName} 👋</h1>
-        <p>Manage your site content below — publish, unpublish or remove anything.</p>
-      </div>
-
-      <nav className="admin-tabs">
+      <AdminHeader email={session.user.email} onSignOut={() => supabase.auth.signOut()}>
         {Object.entries(SECTIONS).map(([key, s]) => (
           <button
             key={key}
             className={`admin-tab ${key === tab ? 'active' : ''}`}
             onClick={() => setTab(key)}
           >
-            <AdminIcon name={s.icon} size={16} />
+            <AdminIcon name={s.icon} size={15} />
             {s.label}
             {key === tab && <span className="admin-tab-count">{rows.length}</span>}
           </button>
         ))}
-      </nav>
+      </AdminHeader>
+
+      <div className="admin-welcome">
+        <h1>Hi, {firstName} 👋</h1>
+        <p>Manage your site content below — publish, unpublish or remove anything.</p>
+      </div>
 
       <div className="admin-panel">
         <p className="admin-panel-hint">{cfg.hint}</p>
