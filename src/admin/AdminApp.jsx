@@ -31,43 +31,45 @@ export default function AdminApp() {
     return (
       <div className="admin-login">
         <AdminHeader />
-        <form onSubmit={signIn} className="admin-card admin-login-card">
-          <img className="admin-login-logo" src="/gadisjangok.PNG" alt="Gadis Jangok" />
-          <h1>Welcome back</h1>
-          <p>Sign in to publish reports, photos and site content.</p>
-          <div className="af-field">
-            <label className="af-label" htmlFor="admin-email">
-              Email
-            </label>
-            <input
-              id="admin-email"
-              type="email"
-              placeholder="you@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email"
-              required
-            />
-          </div>
-          <div className="af-field">
-            <label className="af-label" htmlFor="admin-password">
-              Password
-            </label>
-            <input
-              id="admin-password"
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              autoComplete="current-password"
-              required
-            />
-          </div>
-          {error && <p className="admin-msg err">{error}</p>}
-          <button type="submit" className="admin-submit admin-submit-block" disabled={busy}>
-            {busy ? 'Signing in…' : 'Sign In'}
-          </button>
-        </form>
+        <main className="admin-login-main">
+          <form onSubmit={signIn} className="admin-card admin-login-card">
+            <img className="admin-login-logo" src="/gadisjangok.PNG" alt="Gadis Jangok" />
+            <h1>Welcome back</h1>
+            <p>Sign in to publish reports, photos and site content.</p>
+            <div className="af-field">
+              <label className="af-label" htmlFor="admin-email">
+                Email
+              </label>
+              <input
+                id="admin-email"
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
+                required
+              />
+            </div>
+            <div className="af-field">
+              <label className="af-label" htmlFor="admin-password">
+                Password
+              </label>
+              <input
+                id="admin-password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+                required
+              />
+            </div>
+            {error && <p className="admin-msg err">{error}</p>}
+            <button type="submit" className="admin-submit admin-submit-block" disabled={busy}>
+              {busy ? 'Signing in…' : 'Sign In'}
+            </button>
+          </form>
+        </main>
       </div>
     )
   }

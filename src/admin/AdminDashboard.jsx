@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { supabase, uploadImage } from '../lib/supabase.js'
 import AdminHeader from './AdminHeader.jsx'
 import AdminIcon from './AdminIcons.jsx'
+import AdminTabs from './AdminTabs.jsx'
 
 // Content sections. Each defines the form fields shown for that type.
 const SECTIONS = {
@@ -87,6 +88,8 @@ const SECTIONS = {
     ],
   },
 }
+
+const TABS = Object.entries(SECTIONS).map(([key, s]) => ({ key, label: s.label, icon: s.icon }))
 
 const fmtDate = (iso) =>
   iso
@@ -218,159 +221,151 @@ export default function AdminDashboard({ session }) {
 
 
   return (
-    <div className="admin-shell">
-      <AdminHeader email={session.user.email} onSignOut={() => supabase.auth.signOut()}>
-        {Object.entries(SECTIONS).map(([key, s]) => (
-          <button
-            key={key}
-            className={`admin-tab ${key === tab ? 'active' : ''}`}
-            onClick={() => setTab(key)}
-          >
-            <AdminIcon name={s.icon} size={15} />
-            {s.label}
-            {key === tab && <span className="admin-tab-count">{rows.length}</span>}
-          </button>
-        ))}
+    <>
+      <AdminHeader onSignOut={() => supabase.auth.signOut()}>
+        <AdminTabs items={TABS} active={tab} count={loading ? null : rows.length} onChange={setTab} />
       </AdminHeader>
 
-      <div className="admin-welcome">
-        <h1>Hi, {firstName} 👋</h1>
-        <p>Manage your site content below — publish, unpublish or remove anything.</p>
-      </div>
-
-      <div className="admin-panel">
-        <p className="admin-panel-hint">{cfg.hint}</p>
-
-        <form className="admin-card" onSubmit={onSubmit}>
-          <div className="admin-card-head">
-            <span className="admin-card-icon">
-              <AdminIcon name="plus" size={16} />
-            </span>
-            <h2>New {cfg.singular}</h2>
-          </div>
-
-          {cfg.fields.map((f) =>
-            f.type === 'textarea' ? (
-              <div className="af-field" key={f.name}>
-                <label className="af-label" htmlFor={`f-${f.name}`}>
-                  {f.label}
-                  {f.required && <em>*</em>}
-                </label>
-                <textarea id={`f-${f.name}`} name={f.name} placeholder={f.placeholder} required={f.required} />
-                {f.help && <small className="af-help">{f.help}</small>}
-              </div>
-            ) : f.type === 'select' ? (
-              <div className="af-field" key={f.name}>
-                <label className="af-label" htmlFor={`f-${f.name}`}>
-                  {f.label}
-                </label>
-                <select id={`f-${f.name}`} name={f.name} defaultValue={f.default}>
-                  {f.options.map((o) => (
-                    <option key={o} value={o}>
-                      {(f.labels && f.labels[o]) || o || '(none)'}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            ) : f.type === 'image' ? (
-              <ImageField field={f} key={`${f.name}-${resetKey}`} resetKey={resetKey} />
-            ) : (
-              <div className="af-field" key={f.name}>
-                <label className="af-label" htmlFor={`f-${f.name}`}>
-                  {f.label}
-                  {f.required && <em>*</em>}
-                </label>
-                <input id={`f-${f.name}`} name={f.name} placeholder={f.placeholder} required={f.required} />
-                {f.help && <small className="af-help">{f.help}</small>}
-              </div>
-            ),
-          )}
-
-          <div className="admin-card-foot">
-            <button type="submit" className="admin-submit" disabled={busy}>
-              {busy ? 'Publishing…' : `Publish ${cfg.singular}`}
-            </button>
-            {message && <p className={`admin-msg ${message.type}`}>{message.text}</p>}
-          </div>
-        </form>
-
-        <div className="admin-list-head">
-          <h3>
-            Published &amp; drafts <span>{rows.length}</span>
-          </h3>
+      <div className="admin-shell">
+        <div className="admin-welcome">
+          <h1>Hi, {firstName}</h1>
+          <p>Signed in as {session.user.email}. Publish, unpublish or remove anything below.</p>
         </div>
 
+        <div className="admin-panel" key={tab} role="tabpanel" id={`panel-${tab}`} aria-labelledby={`tab-${tab}`}>
+          <p className="admin-panel-hint">{cfg.hint}</p>
 
-        {loading ? (
-          <div className="admin-loading">
-            <span className="admin-spinner" /> Loading…
-          </div>
-        ) : (
-          <div className="admin-list">
-            {rows.map((r) => (
-              <article className={`admin-row ${r.status}`} key={r.id}>
-                {r.image_url ? (
-                  <img src={r.image_url} alt="" className="admin-row-thumb" />
-                ) : (
-                  <span className="admin-row-thumb admin-row-nothumb">
-                    <AdminIcon name={cfg.icon} size={20} />
-                  </span>
-                )}
-                <div className="admin-row-main">
-                  <strong>{r.title || r.image_alt || '(untitled)'}</strong>
-                  <span className="admin-row-meta">
-                    <em className={`admin-badge ${r.status}`}>{r.status}</em>
-                    {r.event_date && (
-                      <i>
-                        <AdminIcon name="calendar" size={13} /> {r.event_date}
-                      </i>
-                    )}
-                    {r.location && (
-                      <i>
-                        <AdminIcon name="pin" size={13} /> {r.location}
-                      </i>
-                    )}
-                    {r.tag && (
-                      <i>
-                        <AdminIcon name="tag" size={13} /> {r.tag}
-                      </i>
-                    )}
-                    {r.subtitle && <i>{r.subtitle}</i>}
-                    {r.created_at && <i>{fmtDate(r.created_at)}</i>}
-                  </span>
+          <form className="admin-card" onSubmit={onSubmit}>
+            <div className="admin-card-head">
+              <span className="admin-card-icon">
+                <AdminIcon name="plus" size={16} />
+              </span>
+              <h2>New {cfg.singular}</h2>
+            </div>
+
+            {cfg.fields.map((f) =>
+              f.type === 'textarea' ? (
+                <div className="af-field" key={f.name}>
+                  <label className="af-label" htmlFor={`f-${f.name}`}>
+                    {f.label}
+                    {f.required && <em>*</em>}
+                  </label>
+                  <textarea id={`f-${f.name}`} name={f.name} placeholder={f.placeholder} required={f.required} />
+                  {f.help && <small className="af-help">{f.help}</small>}
                 </div>
-                <div className="admin-row-actions">
-                  <button
-                    type="button"
-                    className={`admin-action ${r.status === 'published' ? 'muted' : 'go'}`}
-                    onClick={() => togglePublish(r)}
-                  >
-                    {r.status === 'published' ? 'Unpublish' : 'Publish'}
-                  </button>
-                  <button
-                    type="button"
-                    className="admin-action danger"
-                    onClick={() => remove(r.id)}
-                    aria-label="Delete"
-                  >
-                    <AdminIcon name="trash" size={15} />
-                  </button>
+              ) : f.type === 'select' ? (
+                <div className="af-field" key={f.name}>
+                  <label className="af-label" htmlFor={`f-${f.name}`}>
+                    {f.label}
+                  </label>
+                  <select id={`f-${f.name}`} name={f.name} defaultValue={f.default}>
+                    {f.options.map((o) => (
+                      <option key={o} value={o}>
+                        {(f.labels && f.labels[o]) || o || '(none)'}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-              </article>
-            ))}
-            {!rows.length && (
-              <div className="admin-empty">
-                <AdminIcon name={cfg.icon} size={26} />
-                <p>
-                  Nothing here yet.
-                  <br />
-                  <span>Publish your first {cfg.singular.toLowerCase()} using the form above.</span>
-                </p>
-              </div>
+              ) : f.type === 'image' ? (
+                <ImageField field={f} key={`${f.name}-${resetKey}`} resetKey={resetKey} />
+              ) : (
+                <div className="af-field" key={f.name}>
+                  <label className="af-label" htmlFor={`f-${f.name}`}>
+                    {f.label}
+                    {f.required && <em>*</em>}
+                  </label>
+                  <input id={`f-${f.name}`} name={f.name} placeholder={f.placeholder} required={f.required} />
+                  {f.help && <small className="af-help">{f.help}</small>}
+                </div>
+              ),
             )}
+
+            <div className="admin-card-foot">
+              <button type="submit" className="admin-submit" disabled={busy}>
+                {busy ? 'Publishing…' : `Publish ${cfg.singular}`}
+              </button>
+              {message && <p className={`admin-msg ${message.type}`}>{message.text}</p>}
+            </div>
+          </form>
+
+          <div className="admin-list-head">
+            <h3>
+              Published &amp; drafts <span>{rows.length}</span>
+            </h3>
           </div>
-        )}
+
+
+          {loading ? (
+            <div className="admin-loading">
+              <span className="admin-spinner" /> Loading…
+            </div>
+          ) : (
+            <div className="admin-list">
+              {rows.map((r) => (
+                <article className={`admin-row ${r.status}`} key={r.id}>
+                  {r.image_url ? (
+                    <img src={r.image_url} alt="" className="admin-row-thumb" />
+                  ) : (
+                    <span className="admin-row-thumb admin-row-nothumb">
+                      <AdminIcon name={cfg.icon} size={20} />
+                    </span>
+                  )}
+                  <div className="admin-row-main">
+                    <strong>{r.title || r.image_alt || '(untitled)'}</strong>
+                    <span className="admin-row-meta">
+                      <em className={`admin-badge ${r.status}`}>{r.status}</em>
+                      {r.event_date && (
+                        <i>
+                          <AdminIcon name="calendar" size={13} /> {r.event_date}
+                        </i>
+                      )}
+                      {r.location && (
+                        <i>
+                          <AdminIcon name="pin" size={13} /> {r.location}
+                        </i>
+                      )}
+                      {r.tag && (
+                        <i>
+                          <AdminIcon name="tag" size={13} /> {r.tag}
+                        </i>
+                      )}
+                      {r.subtitle && <i>{r.subtitle}</i>}
+                      {r.created_at && <i>{fmtDate(r.created_at)}</i>}
+                    </span>
+                  </div>
+                  <div className="admin-row-actions">
+                    <button
+                      type="button"
+                      className={`admin-action ${r.status === 'published' ? 'muted' : 'go'}`}
+                      onClick={() => togglePublish(r)}
+                    >
+                      {r.status === 'published' ? 'Unpublish' : 'Publish'}
+                    </button>
+                    <button
+                      type="button"
+                      className="admin-action danger"
+                      onClick={() => remove(r.id)}
+                      aria-label="Delete"
+                    >
+                      <AdminIcon name="trash" size={15} />
+                    </button>
+                  </div>
+                </article>
+              ))}
+              {!rows.length && (
+                <div className="admin-empty">
+                  <AdminIcon name={cfg.icon} size={26} />
+                  <p>
+                    Nothing here yet.
+                    <br />
+                    <span>Publish your first {cfg.singular.toLowerCase()} using the form above.</span>
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

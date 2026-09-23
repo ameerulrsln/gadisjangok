@@ -2,11 +2,12 @@
 .admin-boot{min-height:100vh;display:grid;place-items:center;font-family:var(--font-body);color:var(--text-light);padding:2rem;text-align:center}
 
 /* ---------- Login ---------- */
-.admin-login{min-height:100vh;display:grid;place-items:center;background:var(--cream);padding:6rem 1.5rem 2.5rem;background-image:radial-gradient(rgba(255,107,107,.10) 1px,transparent 1px);background-size:22px 22px}
+.admin-login{min-height:100vh;display:flex;flex-direction:column;background:var(--cream);background-image:radial-gradient(rgba(255,107,107,.10) 1px,transparent 1px);background-size:22px 22px}
+.admin-login-main{flex:1;display:grid;place-items:center;padding:2.5rem 1.5rem}
 .admin-card{background:#fffdf7;border:1px solid #e7d5c3;border-radius:20px;box-shadow:0 10px 30px rgba(92,48,64,.10);padding:1.8rem;max-width:420px;width:100%}
 .admin-card h1{font-family:var(--font-head);font-size:1.5rem;margin-bottom:.3rem;color:var(--text)}
 .admin-card p{color:var(--text-light);font-size:.9rem;margin-bottom:1.3rem;line-height:1.6}
-.admin-login-card{max-width:400px;padding:2.2rem 2rem}
+.admin-login-card{max-width:400px;padding:2.2rem 2rem;animation:admin-rise .5s .1s cubic-bezier(.2,.7,.2,1) both}
 .admin-login-logo{display:block;width:104px;height:auto;margin:0 auto .9rem}
 .admin-login-card h1{text-align:center}
 .admin-login-card p{text-align:center}
@@ -43,37 +44,56 @@
 .admin-msg.ok{color:#2f7d4f;background:rgba(88,166,255,.10)}
 .admin-msg.err{color:#b3261e;background:rgba(179,38,30,.08)}
 
-/* Stripe-style sticky header: vibrant gradient bar, white nav, white pill action */
-.admin-nav{position:fixed;top:0;left:0;width:100%;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.5rem 1.6rem;background:linear-gradient(95deg,#ff8f6b 0%,#ff6b6b 30%,#f2547a 55%,#b04fd0 78%,#5b8def 100%);box-shadow:0 8px 30px rgba(178,60,120,.35)}
-.admin-nav-brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;flex:none}
-.admin-nav-brand img{display:block;width:clamp(80px,10vw,96px);height:auto;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))}
-.admin-nav-badge{font-family:var(--font-head);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);padding:.26rem .65rem;border-radius:999px;backdrop-filter:blur(4px)}
-.admin-nav-center{display:flex;align-items:center;gap:.15rem;flex:1;justify-content:center;flex-wrap:wrap}
-.admin-nav-right{display:flex;align-items:center;gap:.9rem;flex:none}
-.admin-nav-user{font-size:.8rem;color:rgba(255,255,255,.85)}
-.admin-nav-link{font-size:.78rem;font-weight:500;color:rgba(255,255,255,.9);text-decoration:none;transition:color .2s,transform .2s}
-.admin-nav-link:hover{color:#fff;transform:translateY(-1px)}
-.admin-nav-signout{display:inline-flex;align-items:center;gap:.35rem;background:#fff;border:none;border-radius:999px;padding:.5rem 1.05rem;font-size:.8rem;font-weight:600;cursor:pointer;color:#d6336c;font-family:var(--font-body);box-shadow:0 4px 14px rgba(0,0,0,.18);transition:transform .2s,box-shadow .2s}
-.admin-nav-signout:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(0,0,0,.24)}
-.admin-nav-arrow{font-weight:700;font-size:1rem;line-height:0;transform:translateY(.5px)}
-@media(max-width:900px){.admin-nav-center{display:none}}
-@media(max-width:560px){.admin-nav{padding:.45rem .9rem}.admin-nav-user{display:none}}
+/* ---------- Header ----------
+   Sticky gradient bar: the owner's chosen mark for the admin, kept as is.
+   Text never sits on the gradient itself (white on it fails 4.5:1 at most
+   stops); every label lives on a solid cream or dark surface instead.
+   Grid, one row on wide screens: brand | tabs | actions. Below 1000px the
+   tabs take a second row that scrolls sideways, so nothing overlaps.
+   The bar drops in once on load to establish the frame before content. */
+.admin-nav{position:sticky;top:0;z-index:100;display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"brand tabs right";align-items:center;column-gap:1.25rem;padding:.55rem 1.6rem;background:linear-gradient(95deg,#ff8f6b 0%,#ff6b6b 30%,#f2547a 55%,#b04fd0 78%,#5b8def 100%);box-shadow:0 8px 30px rgba(178,60,120,.35);animation:admin-drop .55s cubic-bezier(.2,.7,.2,1) both}
+@keyframes admin-drop{from{transform:translateY(-100%);opacity:0}}
+@keyframes admin-rise{from{opacity:0;transform:translateY(10px)}}
+.admin-nav-brand{grid-area:brand;display:flex;align-items:center;gap:.6rem;min-height:44px;text-decoration:none;min-width:0}
+.admin-nav-brand img{display:block;width:clamp(72px,9vw,96px);height:auto;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))}
+.admin-nav-badge{font-family:var(--font-head);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text);background:#fff7ea;padding:.3rem .6rem;border-radius:6px}
+/* nav.* resets undo global.css's fixed public-site nav, which matches the bare element. */
+nav.admin-nav-center{grid-area:tabs;position:static;width:auto;min-width:0;padding:0;background:transparent;backdrop-filter:none;border:0;box-shadow:none;transition:none;display:flex;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.admin-nav-center::-webkit-scrollbar{display:none}
+.admin-nav-right{grid-area:right;display:flex;align-items:center;gap:.5rem;justify-self:end}
+.admin-nav-link,.admin-nav-signout{display:inline-flex;align-items:center;min-height:40px;padding:.45rem .95rem;border-radius:10px;border:none;font-family:var(--font-body);font-size:.8rem;font-weight:600;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .2s,box-shadow .2s}
+.admin-nav-link{background:#fff7ea;color:var(--text)}
+.admin-nav-signout{background:var(--text);color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.admin-nav-link:hover,.admin-nav-signout:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(0,0,0,.22)}
+.admin-nav a:focus-visible,.admin-nav-signout:focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media(max-width:1000px){.admin-nav{grid-template-columns:auto 1fr;grid-template-areas:"brand right" "tabs tabs"}nav.admin-nav-center{margin:.55rem -1.6rem 0;padding:0 1.6rem}}
+@media(max-width:560px){.admin-nav{padding:.5rem .9rem}nav.admin-nav-center{margin:.5rem -.9rem 0;padding:0 .9rem}.admin-nav-link,.admin-nav-signout{min-height:44px}}
+@media(max-width:400px){.admin-nav-badge{display:none}}
 
 /* ---------- Dashboard layout ---------- */
-.admin-shell{max-width:860px;margin:0 auto;padding:6.5rem 1.25rem 4.5rem;font-family:var(--font-body)}
+.admin-shell{max-width:860px;margin:0 auto;padding:2.25rem 1.25rem 4.5rem;font-family:var(--font-body)}
 .admin-welcome{margin-bottom:1.4rem}
 .admin-welcome h1{font-family:var(--font-head);font-size:clamp(1.5rem,3vw,1.9rem);color:var(--text);margin-bottom:.25rem}
 .admin-welcome p{color:var(--text-light);font-size:.9rem}
 
-/* ---------- Tabs (inside the gradient header) ---------- */
-.admin-tab{display:inline-flex;align-items:center;gap:.4rem;background:transparent;border:none;border-radius:999px;padding:.45rem .85rem;font-size:.82rem;font-weight:500;cursor:pointer;color:rgba(255,255,255,.82);font-family:var(--font-body);transition:background .2s,color .2s;white-space:nowrap}
-.admin-tab svg{opacity:.85}
-.admin-tab:hover{background:rgba(255,255,255,.16);color:#fff}
-.admin-tab.active{background:rgba(255,255,255,.95);color:#d6336c;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+/* ---------- Tabs (inside the header) ----------
+   One cream track holds all sections; the filled pill slides to the chosen
+   tab so the eye follows the change instead of it snapping. */
+.admin-tabs{position:relative;display:flex;gap:.15rem;flex:none;margin:0 auto;padding:.25rem;background:#fff7ea;border-radius:12px}
+.admin-tab-pill{position:absolute;top:.25rem;bottom:.25rem;left:0;border-radius:9px;background:#d6336c;box-shadow:0 3px 10px rgba(214,51,108,.35);pointer-events:none;transition:transform .38s cubic-bezier(.3,.8,.3,1),width .38s cubic-bezier(.3,.8,.3,1)}
+.admin-tab{position:relative;z-index:1;display:inline-flex;align-items:center;gap:.4rem;min-height:38px;background:transparent;border:none;border-radius:9px;padding:.4rem .85rem;font-size:.82rem;font-weight:500;cursor:pointer;color:var(--text);font-family:var(--font-body);white-space:nowrap;transition:color .2s .1s,background .2s}
+.admin-tab svg{opacity:.75}
+.admin-tab:hover:not(.active){background:rgba(214,51,108,.10)}
+.admin-tab.active{color:#fff}
 .admin-tab.active svg{opacity:1}
-.admin-tab-count{background:rgba(214,51,108,.14);color:#d6336c;border-radius:999px;padding:.05rem .45rem;font-size:.72rem;font-weight:700}
+.admin-tab:focus-visible{outline:2px solid #d6336c;outline-offset:-2px}
+.admin-tab.active:focus-visible{outline-color:#fff}
+.admin-tab-count{background:#fff;color:#d6336c;border-radius:999px;padding:.05rem .45rem;font-size:.72rem;font-weight:700}
+@media(max-width:560px){.admin-tab{min-height:44px}}
 
-/* ---------- Panel / form card ---------- */
+/* ---------- Panel / form card ----------
+   The panel rises in once per section change, confirming the switch. */
+.admin-panel{animation:admin-rise .38s cubic-bezier(.2,.7,.2,1) both}
 .admin-panel-hint{font-size:.85rem;color:var(--text-light);margin-bottom:.9rem}
 .admin-shell .admin-card{max-width:640px;margin-bottom:2rem}
 .admin-card-head{display:flex;align-items:center;gap:.6rem;margin-bottom:1.2rem}
@@ -111,6 +131,8 @@
 .admin-empty p{font-size:.9rem;color:var(--text-light);line-height:1.6}
 .admin-empty p span{font-size:.82rem;color:#c3ab97}
 @media(max-width:560px){.admin-row-meta i:nth-child(n+4){display:none}}
+
+@media(prefers-reduced-motion:reduce){.admin-nav,.admin-panel,.admin-login-card{animation:none}.admin-tab-pill,.admin-tab,.admin-nav-link,.admin-nav-signout,.admin-row,.admin-submit{transition:none}}
 
 /* Reports section on the public site */
 #reports{background:#fffaf2}
